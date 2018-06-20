@@ -1,0 +1,54 @@
+header{
+    width: 100%;
+    z-index: 999999;
+}
+.navbar-top.affix {
+    width: 100%;
+    top: 0;
+    z-index: 9999999;
+}
+.affix {
+    position: fixed;
+}
+#app .py-4 .container{
+    margin-top: 70px;
+}
+
+.blog-article{
+    overflow: hidden;
+    border-bottom: 1px solid #666;
+    margin-bottom: 15px;
+}
+.blog-article a.title-article{
+    margin-bottom: 3px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    color: #444;
+}
+.blog-article a.title-article:hover{
+    text-decoration: none;
+}
+.blog-article .article-meta-data{
+    font-size: 18px;
+}
+.blog-article .content-article{
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+
+.blog-article .article-footer{
+    padding: 6px 3px 2px 3px;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+.blog-article p.meta-data-category{
+    display: block;
+    float: left;
+}
+.blog-article a.btn-read-more-article{
+    display: block;
+    float: right;
+}
