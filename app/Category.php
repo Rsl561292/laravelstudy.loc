@@ -27,6 +27,13 @@ class Category extends Model
         return $this->hasMany('App\Article');
     }
 
+    public static function getListId()
+    {
+        $categories = self::pluck('name', 'id')->toArray();
+
+        return $categories;
+    }
+
     public static function getListSlug()
     {
         $categories = self::pluck('name', 'slug')->toArray();

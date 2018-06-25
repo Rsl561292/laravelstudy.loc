@@ -2,13 +2,19 @@
 
 namespace App;
 
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
-    use SoftDeletes;
     //
+    use SoftDeletes;
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 2;
+    const STATUS_BLOCKED = 3;
+    const STATUS_MODERATION = 4;
 
     protected $fillable = [
         'category_id',
@@ -31,4 +37,36 @@ class Article extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_INACTIVE => 'Inactive',
+            self::STATUS_BLOCKED => 'Blocked',
+            self::STATUS_MODERATION => 'Moderation',
+        ];
+    }
+
+    public static function getStatusListBlockedModerator()
+    {
+        return [
+            self::STATUS_BLOCKED => 'Blocked',
+            self::STATUS_MODERATION => 'Moderation',
+        ];
+    }
+
+    public static function getStatusListShowForUser()
+    {
+        return [
+            self::STATUS_BLOCKED => 'Blocked',
+            self::STATUS_MODERATION => 'Moderation',
+        ];
+    }
+
+    public function getStatusName()
+    {
+        return Arr::get(self::getStatusList(), $this->status, 'Undefined');
+    }
+
 }

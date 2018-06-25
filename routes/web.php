@@ -23,39 +23,30 @@ Route::group(['middleware' => ['web']], function() {
     Route::match(['get', 'post'], '/contact', 'SiteController@showContact')->name('site.contact');
 
 
+    //<Route with middleware 'auth'
+    Route::group(['middleware' => ['auth']] , function () {
 
-    Route::group(['prefix' => '/admin'] , function () {
+        //<Route with prefix '/profile'
+        Route::group(['prefix' => '/profile'] , function () {
 
-        Route::group(['middleware' => ['my.authenticate']], function () {
+            Route::get('/', 'Modules\Profile\SiteController@showIndex')->name('profile.site.index');
 
-            Route::get('/', 'Admin\SiteController@getIndex')->name('admin.home');
-            Route::get('/users', [
-                'as' => 'admin.users',
-                'uses' => 'Admin\SiteController@getListUser',
-            ]);
-            Route::get('/user/{slug}', 'Admin\SiteController@getUser')
-                ->name('admin.user');
-            Route::get('/logout', 'Admin\SiteController@getLogout')
-                ->name('admin.logout');
-
+            Route::resource('/articles', 'Modules\Profile\ArticleResource');
         });
+        //>Route with prefix '/profile'
 
-        Route::get('/login', 'Admin\SiteController@getLogin')
-            ->name('admin.login');
-        Route::any('/sign-in', 'Admin\SiteController@postSignIn')
-            ->name('admin.sign-in');
+        //<Route with prefix '/admin'
+        Route::group(['prefix' => '/admin', 'middleware' => 'verificationRules'] , function () {
 
+            Route::get('/', 'Modules\Admin\SiteController@showIndex')->name('admin.site.index');
 
-        Route::get('/pages/add', 'Admin\CoreResource@add');//шлях до всаного доданого методу в контролер типу ресурс
-        Route::resource('/pages', 'Admin\CoreResource', ['except' => ['delete', 'show']]);//шляхи для стандартних методів контролера типу ресурс
-        Route::get('/form-create', function () {
-            return view('form-create');
-        })->name('admin.pages.form-create');
-        Route::get('/form-update', function () {
-            return view('form-update');
-        })->name('admin.pages.form-update');
-
+            Route::get('/articles', 'Modules\Admin\ArticleController@getIndex')->name('admin.articles.index');
+            Route::get('/articles/revise/{id}', 'Modules\Admin\ArticleController@getOne')->name('admin.articles.one');
+            Route::get('/articles/{id}/change-status-on/{status}', 'Modules\Admin\ArticleController@setChangeStatus')->name('admin.articles.change-status');
+        });
+        //>Route with prefix '/admin'
     });
+    //>
 
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -119,17 +110,47 @@ Route::get('/product/{product_id}/{category_id?}', function ($parameter1, $param
     'category_id' => '[0-9]+'
 ]);*/
 /*
-Route::group(['prefix' => '/admin'], function () {
+    Route::group(['prefix' => '/test'] , function () {
 
-    Route::get('/new/{new_id}/{slug?}', function ($parameter1, $parameter2 = '') {
+        Route::get('/new/{new_id}/{slug?}', function ($parameter1, $parameter2 = '') {
 
-        echo '<a href="' . route("home") . '">Home</a> <br/><br/><br/>';
+            echo '<a href="' . route("home") . '">Home</a> <br/><br/><br/>';
 
-        echo '$id = ' . $parameter1 . '; <br/>$slug = ' . $parameter2;
-    })->where('new_id', '[0-9]+')
-        ->name('admin_new');
+            echo '$id = ' . $parameter1 . '; <br/>$slug = ' . $parameter2;
+        })->where('new_id', '[0-9]+')
+            ->name('admin_new');
 
-});*/
+        Route::group(['middleware' => ['my.authenticate']], function () {
+
+            Route::get('/', 'Test\SiteController@getIndex')->name('admin.home');
+            Route::get('/users', [
+                'as' => 'admin.users',
+                'uses' => 'Test\SiteController@getListUser',
+            ]);
+            Route::get('/user/{slug}', 'Test\SiteController@getUser')
+                ->name('admin.user');
+            Route::get('/logout', 'Test\SiteController@getLogout')
+                ->name('admin.logout');
+
+        });
+
+        Route::get('/login', 'Test\SiteController@getLogin')
+            ->name('admin.login');
+        Route::any('/sign-in', 'Test\SiteController@postSignIn')
+            ->name('admin.sign-in');
+
+
+        Route::get('/pages/add', 'Test\CoreResource@add');//шлях до всаного доданого методу в контролер типу ресурс
+        Route::resource('/pages', 'Test\CoreResource', ['except' => ['delete', 'show']]);//шляхи для стандартних методів контролера типу ресурс
+        Route::get('/form-create', function () {
+            return view('form-create');
+        })->name('admin.pages.form-create');
+        Route::get('/form-update', function () {
+            return view('form-update');
+        })->name('admin.pages.form-update');
+
+    });
+*/
 /*
 Route::group(['prefix' => '/profile/{name}'], function () {
 

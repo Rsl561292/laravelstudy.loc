@@ -25,15 +25,15 @@
                 @forelse($articles as $article)
                     <div class="blog-article">
                         <a class="title-article" href="{{ route('site.article', ['id' => $article['id']]) }}">{{ $article['title'] }}</a>
-                        <div class="article-meta-data">
-                            <p class="meta-data-date-and-auth">{{ date('F d, Y', strtotime($article['published_at'])) }} by <a href="#">{{ $article['user']['name'] }}</a></p>
+                        <div class="list-meta-data">
+                            <p class="meta-data">{{ date('F d, Y', strtotime($article['published_at'])) }} by <a href="#">{{ $article['user']['name'] }}</a></p>
                         </div>
 
                         <div class="content-article">{{ substr($article['content'], 0, 700) }}...</div>
 
                         <div class="article-footer">
-                            <p class="meta-data-category">Category: <a href="{{ route('site.articles.category', ['category_slug' => $article['category']['slug']]) }}">{{ $article['category']['name'] }}</a></p>
-                            <a class="btn-read-more-article" href="{{ route('site.article', ['id' => $article['id']]) }}">read more</a>
+                            <p class="meta-data div-left">Category: <a href="{{ route('site.articles.category', ['category_slug' => $article['category']['slug']]) }}">{{ $article['category']['name'] }}</a></p>
+                            <a class="btn-read-more-article div-right" href="{{ route('site.article', ['id' => $article['id']]) }}">read more</a>
                         </div>
                     </div>
                 @empty

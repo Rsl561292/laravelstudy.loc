@@ -16,16 +16,14 @@
         <div class="col-md-9">
             @if(!empty($article))
                 <div class="blog-article">
-                    <a class="title-article" href="{{ route('site.article', ['id' => $article['id']]) }}">{{ $article['title'] }}</a>
-                    <div class="article-meta-data">
-                        <p class="meta-data-date-and-auth">{{ date('F d, Y', strtotime($article['published_at'])) }} by <a href="#">{{ $article['user']['name'] }}</a></p>
+                    <a class="title-article" href="#">{{ $article['title'] }}</a>
+                    <div class="list-meta-data">
+                        <p class="meta-data div-left">Category: <a href="{{ route('site.articles.category', ['category_slug' => $article['category']['slug']]) }}">{{ $article['category']['name'] }}</a></p>
+                        <p class="meta-data div-right">{{ date('F d, Y', strtotime($article['published_at'])) }} by <a href="#">{{ $article['user']['name'] }}</a></p>
                     </div>
 
                     <div class="content-article">{{ $article['content'] }}</div>
 
-                    <div class="article-footer">
-                        <p class="meta-data-category">Category: <a href="{{ route('site.articles.category', ['category_slug' => $article['category']['slug']]) }}">{{ $article['category']['name'] }}</a></p>
-                    </div>
                 </div>
             @else
                 <center><h4>Articles not found!</h4></center>

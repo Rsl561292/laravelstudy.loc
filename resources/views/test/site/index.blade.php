@@ -1,4 +1,4 @@
-@extends('.admin.layouts.main')
+@extends('test.layouts.main')
 
 @section('navbar')
     @parent

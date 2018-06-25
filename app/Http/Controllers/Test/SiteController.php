@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Test;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,7 +9,7 @@ class SiteController extends Controller
 {
     public function getIndex()
     {
-        $view = view('admin\site\index');
+        $view = view('test\site\index');
         $view->with('userName', $this->getUserName());
         $view->with('pageName', 'Home page Admin');
 
@@ -20,9 +20,9 @@ class SiteController extends Controller
 
     public function getLogin()
     {
-        if(view()->exists('admin\site\login')) {
+        if(view()->exists('test\site\login')) {
 
-            return view('admin\site\login', [
+            return view('test\site\login', [
                 'userName' => $this->getUserName(),
                 'pageName' => 'Sign in admin particle'
             ]);
@@ -71,7 +71,7 @@ class SiteController extends Controller
 
     public function getListUser()
     {
-        return view('admin\site\list-user', [
+        return view('test\site\list-user', [
             'userName' => $this->getUserName(),
             'listUser' => config('parameters.listUser'),
         ]);
@@ -82,7 +82,7 @@ class SiteController extends Controller
         $listUser = config('parameters.listUser');
         $userViewName = isset($listUser[$slug]) ? $listUser[$slug] : '';
 
-        return view('admin\site\view-user', [
+        return view('test\site\view-user', [
             'userName' => $this->getUserName(),
             'userViewName' => $userViewName,
         ]);

@@ -26,6 +26,7 @@
     <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- My Styles -->
+    <link href="{{ asset('css/global-style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin-style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/site-style.css') }}" rel="stylesheet">
 
@@ -55,9 +56,6 @@
                             <li class="nav-item">
                                 <a class="nav-link {{ \Illuminate\Support\Facades\URL::current() == route('site.contact') ? 'active' : '' }}" href="{{route('site.contact')}}">Contact us</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ \Illuminate\Support\Facades\URL::current() == route('admin.home') ? 'active' : '' }}" href="{{route('admin.home')}}">Admin</a>
-                            </li>
                         </ul>
 
                         <!-- Right Side Of Navbar -->
@@ -77,6 +75,14 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('profile.site.index') }}">
+                                            My profile
+                                        </a>
+                                        @if(Auth::user()->role != \App\User::ROLE_USER)
+                                        @endif
+                                        <a class="dropdown-item" href="{{ route('admin.site.index') }}">
+                                            Cabinet Administrator
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -97,6 +103,31 @@
 
         <main class="py-4">
             <div class="container">
+                @php
+                    $flashMessages = [];
+
+                    if(Session::has('flash_message')) {
+                        $flashMessages = Session::get('flash_message');
+                        Session::forget('flash_message');
+                    }
+                @endphp
+
+                @foreach($flashMessages as $message)
+                    @if($message['type'] == 'success')
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <h4>Message about success!</h4>
+                            <p>{{ $message['message'] }}</p>
+                        </div>
+                    @else
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <h4>Message about error!</h4>
+                            <p>{{ $message['message'] }}</p>
+                        </div>
+                    @endif
+                @endforeach
+
                 @yield('content')
             </div>
         </main>

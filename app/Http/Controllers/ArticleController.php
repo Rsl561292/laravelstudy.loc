@@ -16,6 +16,7 @@ class ArticleController extends Controller
             'user',
             'category'
         ])
+            ->where('status', Article::STATUS_ACTIVE)
             ->orderBy('published_at', 'desc')
             ->get()
             ->toArray();

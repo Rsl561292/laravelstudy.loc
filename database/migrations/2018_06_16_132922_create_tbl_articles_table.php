@@ -22,8 +22,8 @@ class CreateTblArticlesTable extends Migration
                 $table->text('content');
                 $table->string('preview_img', 255)->nullable();
                 $table->string('preview_text', 255)->nullable();
-                $table->integer('view_count', false, true);
-                $table->integer('like_count', false, true);
+                $table->integer('view_count', false, true)->default(0);
+                $table->integer('like_count', false, true)->default(0);
                 $table->timestamps();
                 $table->smallInteger('status', false, true);
 
