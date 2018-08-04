@@ -29,7 +29,6 @@ class ArticleController extends Controller
         ]);
     }
 
-
     public function getOne($id)
     {
         //

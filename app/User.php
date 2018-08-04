@@ -10,6 +10,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const STATUS_ACTIVE = 1;
+    const STATUS_BLOCKED = 2;
+
     const ROLE_ADMIN_GLOBAL = 1;
     const ROLE_USER = 2;
 
@@ -19,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role',
+        'name', 'email', 'password', 'role', 'status'
     ];
 
     /**
@@ -37,7 +40,20 @@ class User extends Authenticatable
     }
 
     //<Work with const
-    public static function getRolesList()
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_BLOCKED => 'Blocked',
+        ];
+    }
+
+    public function getStatusName()
+    {
+        return Arr::get(self::getStatusList(), $this->status, 'Undefined');
+    }
+
+    public static function getRoleList()
     {
         return [
             self::ROLE_ADMIN_GLOBAL => 'Global Admin',
@@ -45,12 +61,12 @@ class User extends Authenticatable
         ];
     }
 
-    public function getStatusName()
+    public function getRoleName()
     {
-        return Arr::get(self::getRolesList(), $this->role, 'Undefined');
+        return Arr::get(self::getRoleList(), $this->role, 'Undefined');
     }
 
-    public static function getRolesListForAdmin()
+    public static function getRoleListForAdmin()
     {
         return [
             self::ROLE_ADMIN_GLOBAL => 'Global Admin',

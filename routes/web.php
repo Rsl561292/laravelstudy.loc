@@ -43,6 +43,11 @@ Route::group(['middleware' => ['web']], function() {
             Route::get('/articles', 'Modules\Admin\ArticleController@getIndex')->name('admin.articles.index');
             Route::get('/articles/revise/{id}', 'Modules\Admin\ArticleController@getOne')->name('admin.articles.one');
             Route::get('/articles/{id}/change-status-on/{status}', 'Modules\Admin\ArticleController@setChangeStatus')->name('admin.articles.change-status');
+
+            Route::get('/users', 'Modules\Admin\UserController@getIndex')->name('admin.users.index');
+            Route::get('/users/change-role', 'Modules\Admin\UserController@getChangeRole')->name('admin.users.change_role');
+            Route::get('/users/change-status', 'Modules\Admin\UserController@getChangeStatus')->name('admin.users.change_status');
+
         });
         //>Route with prefix '/admin'
     });

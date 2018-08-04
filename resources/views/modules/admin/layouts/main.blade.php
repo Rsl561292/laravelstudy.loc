@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
 
     <!-- Scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -91,6 +92,11 @@
                         <li class="nav-item">
                             <a class="nav-link {{ stripos(\Illuminate\Support\Facades\URL::current(), route('admin.articles.index')) !== false ? 'active' : '' }}" href="{{ route('admin.articles.index') }}">
                                 <i class="fa fa-clipboard fa-fw" aria-hidden="true"></i> Articles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ stripos(\Illuminate\Support\Facades\URL::current(), route('admin.users.index')) !== false ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
+                                <i class="fa fa-users fa-fw" aria-hidden="true"></i> Users
                             </a>
                         </li>
                     </ul>

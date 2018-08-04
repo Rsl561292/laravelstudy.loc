@@ -25,7 +25,7 @@ class VerificationRulesMiddleware
 
         if(stripos(URL::current(), '/admin')) {
 
-            if(!Arr::exists(User::getRolesListForAdmin(), $user->role)) {
+            if(!Arr::exists(User::getRoleListForAdmin(), $user->role)) {
 
                 Session::put('flash_message', [
                     [

@@ -35,7 +35,7 @@
                             <td>{{ $article->category->name }}</td>
                             <td>{{ $article->title }}</td>
                             <td>{{ $article->getStatusName() }}</td>
-                            <td>{{ $article->created_at }}</td>
+                            <td>{{ $article->updated_at }}</td>
                             <td>{{ $article->published_at }}</td>
                             <td class="td-actions">
                                 <a class="btn btn-primary" href="{{ route('admin.articles.one', ['id' => $article->id]) }}">
