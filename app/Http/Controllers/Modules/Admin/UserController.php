@@ -16,7 +16,9 @@ class UserController extends Controller
     {
         //
 
-        $users = User::where('id', '<>', Auth::user()->id)->orderBy('name')->get();
+        $users = User::where('id', '<>', Auth::user()->id)
+            ->orderBy('name')
+            ->paginate(10);
 
         return view('modules/admin/user/index', [
             'users' => $users,

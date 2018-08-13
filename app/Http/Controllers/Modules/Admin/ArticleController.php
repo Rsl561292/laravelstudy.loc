@@ -22,7 +22,7 @@ class ArticleController extends Controller
             'user'
         ])
             ->orderBy('updated_at', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('modules/admin/article/index', [
             'articles' => $articles,

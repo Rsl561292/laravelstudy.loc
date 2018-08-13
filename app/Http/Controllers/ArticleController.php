@@ -18,8 +18,7 @@ class ArticleController extends Controller
         ])
             ->where('status', Article::STATUS_ACTIVE)
             ->orderBy('published_at', 'desc')
-            ->get()
-            ->toArray();
+            ->paginate(10);
 
         $categories = Category::getListSlug();
 

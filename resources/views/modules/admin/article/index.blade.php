@@ -47,6 +47,8 @@
                 </tbody>
             </table>
         </div>
+
+        {{ $articles->links() }}
     @else
         <center><h4>On site not is anyone article.</h4></center>
     @endif

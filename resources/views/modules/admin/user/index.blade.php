@@ -57,6 +57,8 @@
                 </tbody>
             </table>
         </div>
+
+        {{ $users->links() }}
     @else
         <center><h4>On site not is anyone user.</h4></center>
     @endif

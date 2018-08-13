@@ -70,6 +70,8 @@
                 </tbody>
             </table>
         </div>
+
+        {{ $articles->links() }}
     @else
         <center><h4>You did not write anyone article.</h4></center>
     @endif

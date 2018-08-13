@@ -26,7 +26,7 @@ class ArticleResource extends Controller
         ])
             ->where('user_id', Auth::user()->id)
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('modules/profile/article/index', [
             'articles' => $articles,
