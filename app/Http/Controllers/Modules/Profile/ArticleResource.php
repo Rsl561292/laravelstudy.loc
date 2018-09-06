@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
 use App\Article;
+use App\DataTables\Module\Profile\ArticlesDataTable;
 
 class ArticleResource extends Controller
 {
@@ -17,20 +18,18 @@ class ArticleResource extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ArticlesDataTable $dataTable)
     {
         //
-
+/*
         $articles = Article::with([
             'category'
         ])
             ->where('user_id', Auth::user()->id)
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(10);*/
 
-        return view('modules/profile/article/index', [
-            'articles' => $articles,
-        ]);
+        return $dataTable->render('modules/profile/article/index');
     }
 
     /**
