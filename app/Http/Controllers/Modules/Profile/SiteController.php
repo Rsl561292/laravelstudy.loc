@@ -12,6 +12,6 @@ class SiteController extends Controller
     {
         //
 
-        return view('modules\profile\site\show-index');
+        return view('modules.profile.site.show-index');
     }
 }

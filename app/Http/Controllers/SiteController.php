@@ -16,14 +16,14 @@ class SiteController extends Controller
     {
         //
 
-        return view('site/show-index');
+        return view('site.show-index');
     }
 
     public function showContact()
     {
         //
 
-        return view('site/show-contact');
+        return view('site.show-contact');
     }
 
 
@@ -46,7 +46,7 @@ class SiteController extends Controller
     {
         print_r($this->request->all());
 
-        return view('site/show-contact', [
+        return view('site.show-contact', [
             'userName' => $this->getUserName(),
             'pageName' => 'Contact us',
             'message' => 'With this form you can contact us'

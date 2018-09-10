@@ -22,7 +22,7 @@ class ArticleController extends Controller
 
         $categories = Category::getListSlug();
 
-        return view('article/show-all', [
+        return view('article.show-all', [
             'articles' => $articles,
             'categories' => $categories,
         ]);
@@ -48,7 +48,7 @@ class ArticleController extends Controller
 
         $categories = Category::getListSlug();
 
-        return view('article/show-all', [
+        return view('article.show-all', [
             'articles' => $articles,
             'categories' => $categories,
         ]);
@@ -63,7 +63,7 @@ class ArticleController extends Controller
 
         $categories = Category::getListSlug();
 
-        return view('article/show-one', [
+        return view('article.show-one', [
             'article' => $article,
             'categories' => $categories,
         ]);

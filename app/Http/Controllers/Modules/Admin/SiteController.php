@@ -13,6 +13,6 @@ class SiteController extends Controller
     {
         //
 
-        return view('modules\admin\site\show-index');
+        return view('modules.admin.site.show-index');
     }
 }

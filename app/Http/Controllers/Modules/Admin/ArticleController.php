@@ -24,7 +24,7 @@ class ArticleController extends Controller
             ->orderBy('updated_at', 'desc')
             ->paginate(10);
 
-        return view('modules/admin/article/index', [
+        return view('modules.admin.article.index', [
             'articles' => $articles,
         ]);
     }
@@ -39,7 +39,7 @@ class ArticleController extends Controller
 
         if(!empty($article)) {
 
-            return view('modules/admin/article/one', [
+            return view('modules.admin.article.one', [
                 'article' => $article,
             ]);
 

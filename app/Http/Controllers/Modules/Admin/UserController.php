@@ -20,7 +20,7 @@ class UserController extends Controller
             ->orderBy('name')
             ->paginate(10);
 
-        return view('modules/admin/user/index', [
+        return view('modules.admin.user.index', [
             'users' => $users,
         ]);
     }

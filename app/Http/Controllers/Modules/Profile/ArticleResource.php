@@ -43,7 +43,7 @@ class ArticleResource extends Controller
 
         $categories = Category::getListId();
 
-        return view('modules/profile/article/create', [
+        return view('modules.profile.article.create', [
             'categories' => $categories,
         ]);
     }
