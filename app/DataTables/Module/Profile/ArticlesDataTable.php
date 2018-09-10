@@ -16,8 +16,8 @@ class ArticlesDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables($query)
-            ->setRowId('id')
+        return $this->datatables
+            ->eloquent($this->query())
             ->addColumn('action', 'module/profile/articles.action');
     }
 
@@ -27,16 +27,17 @@ class ArticlesDataTable extends DataTable
      * @param \App\'App\Article'\Module/Profile/Article $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Article $model)
-    {/*
+    public function query()
+    {
         $query = Article::with([
             'category'
         ])
             ->where('user_id', Auth::user()->id)
             ->orderBy('created_at', 'desc');
-
+/*
         return $this->applyScopes($query);*/
-        return $model->newQuery()->select('id', 'title', 'updated_at', 'published_at', 'status');
+        //return $model->newQuery()->select('id', 'title', 'updated_at', 'published_at', 'status');
+        return $query;
     }
 
     /**

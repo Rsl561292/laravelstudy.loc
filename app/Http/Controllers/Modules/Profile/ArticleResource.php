@@ -29,7 +29,7 @@ class ArticleResource extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);*/
 
-        return $dataTable->render('modules/profile/article/index');
+        return $dataTable->render('modules.profile.article.index');
     }
 
     /**

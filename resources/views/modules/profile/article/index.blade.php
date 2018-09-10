@@ -14,7 +14,7 @@
 @section('titlePage', 'Your articles')
 
 @section('content')
-    {{$dataTable->table(['id' => 'articles'])}}
+    {!! $dataTable->table(['id' => 'articles']) !!}
 @endsection
 
 @push('css')
