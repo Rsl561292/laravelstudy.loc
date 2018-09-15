@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Modules\Profile;
 
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Category;
 use App\Article;
 use App\DataTables\Module\Profile\ArticlesDataTable;
+use Datatables;
+use Yajra\Datatables\Html\Builder;
 
 class ArticleResource extends Controller
 {
@@ -18,18 +21,16 @@ class ArticleResource extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ArticlesDataTable $dataTable)
+    public function index(Request $request, ArticlesDataTable $dataTable)
     {
         //
-/*
-        $articles = Article::with([
-            'category'
-        ])
-            ->where('user_id', Auth::user()->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);*/
+
+        if ($request->ajax()) {
+            return Datatables::of(Article::query())->toJson();
+        }
 
         return $dataTable->render('modules.profile.article.index');
+
     }
 
     /**

@@ -32,6 +32,7 @@ Route::group(['middleware' => ['web']], function() {
             Route::get('/', 'Modules\Profile\SiteController@showIndex')->name('profile.site.index');
 
             Route::resource('/articles', 'Modules\Profile\ArticleResource');
+
         });
         //>Route with prefix '/profile'
 

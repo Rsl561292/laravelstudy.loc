@@ -3,6 +3,7 @@
 namespace App\DataTables\Module\Profile;
 
 use Illuminate\Support\Facades\Auth;
+use Datatables;
 use Yajra\DataTables\Services\DataTable;
 use App\Article;
 
@@ -14,11 +15,9 @@ class ArticlesDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
-            ->addColumn('action', 'module/profile/articles.action');
+        return Datatables::of(Article::query())->toJson();
     }
 
     /**
@@ -29,15 +28,10 @@ class ArticlesDataTable extends DataTable
      */
     public function query()
     {
-        $query = Article::with([
-            'category'
-        ])
-            ->where('user_id', Auth::user()->id)
-            ->orderBy('created_at', 'desc');
-/*
-        return $this->applyScopes($query);*/
+        $query = Article::query();
+
+        return $this->applyScopes($query);
         //return $model->newQuery()->select('id', 'title', 'updated_at', 'published_at', 'status');
-        return $query;
     }
 
     /**
